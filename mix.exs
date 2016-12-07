@@ -32,7 +32,9 @@ defmodule Mangoex.Mixfile do
   defp deps do
     [
       {:httpotion, "~> 3.0.2"},
-      {:poison, "~> 3.0"}
+      {:poison, "~> 3.0"},
+      {:exvcr, "~> 0.7", only: :test},
+      {:dialyxir, "~> 0.4", only: [:dev]}
     ]
   end
 end
