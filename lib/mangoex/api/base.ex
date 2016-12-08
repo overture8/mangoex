@@ -21,6 +21,19 @@ defmodule Mangoex.API.Base do
       ]
   end
 
+  def request(:put, path, body, token) do
+    encoded_body = body |> Poison.encode!
+
+    HTTPotion.put api_url(path),
+      [
+        body: encoded_body,
+        headers: [
+          "Authorization": "Bearer #{token}",
+          "Content-Type": "application/json"
+        ]
+      ]
+  end
+
   def request(:auth, client_id, client_pass) do
     token = encode_auth(client_id, client_pass)
 
@@ -32,7 +45,7 @@ defmodule Mangoex.API.Base do
           "Content-Type": "application/x-www-form-urlencoded"]
       ]
   end
-  
+
   def decode_json(resp_map) do
     body = resp_map.body
     |> Poison.decode!

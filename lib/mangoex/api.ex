@@ -9,13 +9,29 @@ defmodule Mangoex.Api do
     as: :list
 
   @spec create_payin(
-    :bankwire_direct | :card,
+    :bankwire_direct | :card_direct,
     String.t,
     String.t,
     map()
   ) :: tuple()
   defdelegate create_payin(type, client_id, token, body),
     to: Mangoex.API.Payin,
+    as: :create
+
+  @spec create_refund(
+    :payin | :transfer,
+    String.t,
+    String.t,
+    String.t,
+    map()
+  ) :: tuple()
+  defdelegate create_refund(type, client_id, payin_id, token, body),
+    to: Mangoex.API.Refund,
+    as: :create
+
+  @spec create_card(String.t, String.t, map()) :: tuple()
+  defdelegate create_card(client_id, token, body),
+    to: Mangoex.API.Card,
     as: :create
 
   @spec create_wallet(String.t, String.t, map()) :: tuple()

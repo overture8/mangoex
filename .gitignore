@@ -17,3 +17,5 @@ erl_crash.dump
 *.ez
 
 test_script.exs
+
+/fixture
