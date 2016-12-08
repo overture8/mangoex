@@ -4,6 +4,8 @@ defmodule Mangoex.Mixfile do
   def project do
     [app: :mangoex,
      version: "0.1.0",
+     description: "Elixir wrapper for the MangoPay API",
+     package: package,
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -34,7 +36,8 @@ defmodule Mangoex.Mixfile do
       {:httpotion, "~> 3.0.2"},
       {:poison, "~> 3.0"},
       {:exvcr, "~> 0.7", only: :test},
-      {:dialyxir, "~> 0.4", only: [:dev]}
+      {:dialyxir, "~> 0.4", only: [:dev]},
+      {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 
