@@ -37,4 +37,12 @@ defmodule Mangoex.Mixfile do
       {:dialyxir, "~> 0.4", only: [:dev]}
     ]
   end
+
+  defp package do
+    [
+      maintainers: ["overture8"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/overture8/mangoex"}
+    ]
+  end
 end
