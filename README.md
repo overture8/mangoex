@@ -56,6 +56,7 @@ These are the priorities for me right now. If you want anything else feel free t
 - [ ] PayIns
   - [x] Create bankwire direct PayIn
   - [x] Create card direct PayIn
+  - [x] Get PayIn
   - [x] PayIn Refund
 - [ ] PayOuts
  	- [ ] Create PayOut

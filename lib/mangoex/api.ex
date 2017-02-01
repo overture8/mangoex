@@ -18,6 +18,15 @@ defmodule Mangoex.Api do
     to: Mangoex.API.Payin,
     as: :create
 
+  @spec get_payin(
+    String.t,
+    String.t,
+    String.t
+  ) :: tuple()
+  defdelegate get_payin(client_id, payin_id, token),
+    to: Mangoex.API.Payin,
+    as: :get
+
   @spec create_refund(
     :payin | :transfer,
     String.t,
