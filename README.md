@@ -10,7 +10,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
     ```elixir
     def deps do
-      [{:mangoex, "~> 0.1.0"}]
+      [{:mangoex, "~> 0.1.2"}]
     end
     ```
 
@@ -25,7 +25,6 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 ## Usage
 
 ```elixir
-Mangoex.Client.start_link
 Mangoex.Client.auth("client_id", "client_pass")
 
 body = %{

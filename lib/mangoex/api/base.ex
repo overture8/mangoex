@@ -1,6 +1,18 @@
 defmodule Mangoex.API.Base do
   @api_base Application.fetch_env!(:mangoex, :api_base)
 
+  def request(:auth, client_id, client_pass) do
+    token = encode_auth(client_id, client_pass)
+
+    HTTPotion.post api_url("/oauth/token"),
+      [
+        body: "grant_type=" <> URI.encode_www_form("client_credentials"),
+        headers: [
+          "Authorization": "Basic #{token}",
+          "Content-Type": "application/x-www-form-urlencoded"]
+      ]
+  end
+
   def request(:get, path, token) do
     HTTPotion.get api_url(path),
       [
@@ -31,18 +43,6 @@ defmodule Mangoex.API.Base do
           "Authorization": "Bearer #{token}",
           "Content-Type": "application/json"
         ]
-      ]
-  end
-
-  def request(:auth, client_id, client_pass) do
-    token = encode_auth(client_id, client_pass)
-
-    HTTPotion.post api_url("/oauth/token"),
-      [
-        body: "grant_type=" <> URI.encode_www_form("client_credentials"),
-        headers: [
-          "Authorization": "Basic #{token}",
-          "Content-Type": "application/x-www-form-urlencoded"]
       ]
   end
 
