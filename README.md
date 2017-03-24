@@ -21,6 +21,19 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
       [applications: [:mangoex]]
     end
     ```
+    
+ 3. Ensure you have SSL protocal version specified in your `confix.ex`:
+ 
+ ```elixir
+ config :ssl, protocol_version: :"tlsv1.2"
+ ```
+ 
+ 4. Add api_base config to you `confix.ex`:
+ 
+ ```elixir
+ config :mangoex,
+   api_base: "https://api.sandbox.mangopay.com/v2.01"
+ ```
 
 ## Usage
 
