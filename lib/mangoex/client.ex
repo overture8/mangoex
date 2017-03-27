@@ -34,6 +34,10 @@ defmodule Mangoex.Client do
     GenServer.call(@client_name, {:create_wallet, body})
   end
 
+  def create_bank_account(type, user_id, body) do
+    GenServer.call(@client_name, {:create_bank_account, type, user_id, body})
+  end
+
   # GenServer callbacks
 
   def handle_call({:auth, client_id, client_pass}, _from, state) do
@@ -105,4 +109,13 @@ defmodule Mangoex.Client do
     {:reply, resp, state}
   end
 
+  def handle_call({:create_bank_account, :gb, user_id, body}, _from, state) do
+    resp = Mangoex.Api.create_gb_bank_account(
+      state[:client_id],
+      user_id,
+      state[:token],
+      body
+    )
+    {:reply, resp, state}
+  end
 end

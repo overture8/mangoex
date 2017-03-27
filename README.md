@@ -52,7 +52,7 @@ These are the priorities for me right now. If you want anything else feel free t
 - [ ] Wallets
   - [x] Create wallet
   - [ ] Update wallet
-- [ ] PayIns
+- [x] PayIns
   - [x] Create bankwire direct PayIn
   - [x] Create card direct PayIn
   - [x] Get PayIn
@@ -62,8 +62,8 @@ These are the priorities for me right now. If you want anything else feel free t
  	- [ ] View PayOut
 - [ ] Transfers
  	- [ ] Create Transfer
-- [ ] BankAccounts
- 	- [ ] Create GB bank account
+- [x] BankAccounts
+ 	- [x] Create GB bank account
 - [ ] Cards
   - [ ] Create card registration
   - [ ] Update card registration
