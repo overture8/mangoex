@@ -1,6 +1,6 @@
 defmodule Mangoex.Client do
   use GenServer
-
+  @behaviour Mangoex.Behaviour
   @client_name Mangoex.Client
 
   # Client API
@@ -28,6 +28,10 @@ defmodule Mangoex.Client do
 
   def create_refund(type, payin_id, body) do
     GenServer.call(@client_name, {:create_refund, type, payin_id, body})
+  end
+
+  def create_card(body) do
+    GenServer.call(@client_name, {:create_card, body})
   end
 
   def create_wallet(body) do
@@ -103,6 +107,15 @@ defmodule Mangoex.Client do
       :payin,
       state[:client_id],
       payin_id,
+      state[:token],
+      body
+    )
+    {:reply, resp, state}
+  end
+
+  def handle_call({:create_card, body}, _from, state) do
+    resp = Mangoex.Api.create_card(
+      state[:client_id],
       state[:token],
       body
     )

@@ -8,32 +8,32 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
   1. Add `mangoex` to your list of dependencies in `mix.exs`:
 
-    ```elixir
-    def deps do
-      [{:mangoex, "~> 0.1.2"}]
-    end
-    ```
+```elixir
+def deps do
+  [{:mangoex, "~> 0.1.4"}]
+end
+```
 
   2. Ensure `mangoex` is started before your application:
 
-    ```elixir
-    def application do
-      [applications: [:mangoex]]
-    end
-    ```
+```elixir
+def application do
+  [applications: [:mangoex]]
+end
+```
     
  3. Ensure you have SSL protocal version specified in your `confix.ex`:
  
- ```elixir
- config :ssl, protocol_version: :"tlsv1.2"
- ```
+```elixir
+config :ssl, protocol_version: :"tlsv1.2"
+```
  
  4. Add api_base config to you `confix.ex`:
  
- ```elixir
- config :mangoex,
-   api_base: "https://api.sandbox.mangopay.com/v2.01"
- ```
+```elixir
+config :mangoex,
+  api_base: "https://api.sandbox.mangopay.com/v2.01"
+```
 
 ## Usage
 
@@ -62,6 +62,7 @@ These are the priorities for me right now. If you want anything else feel free t
   - [ ] Create natural user
   - [ ] Update natural user
   - [x] List users
+  - [ ] Get eMoney values
 - [ ] Wallets
   - [x] Create wallet
   - [ ] Update wallet
@@ -73,13 +74,16 @@ These are the priorities for me right now. If you want anything else feel free t
 - [ ] PayOuts
  	- [ ] Create PayOut
  	- [ ] View PayOut
+- [ ] KYC
+ 	- [ ] Create docment
+ 	- [ ] View document   
 - [ ] Transfers
  	- [ ] Create Transfer
 - [x] BankAccounts
  	- [x] Create GB bank account
-- [ ] Cards
-  - [ ] Create card registration
-  - [ ] Update card registration
+- [x] Cards
+  - [x] Create card registration
+  - [x] Update card registration
 
 ## License
 
