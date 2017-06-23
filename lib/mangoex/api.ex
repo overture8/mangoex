@@ -77,4 +77,15 @@ defmodule Mangoex.Api do
   defdelegate create_kyc_page(client_id, user_id, kyc_document_id, token, body),
     to: Mangoex.API.Kyc,
     as: :create_page
+
+  @spec submit_kyc_document(
+    String.t,
+    String.t,
+    String.t,
+    String.t,
+    map()
+  ) :: tuple()
+  defdelegate submit_kyc_document(client_id, user_id, kyc_document_id, token, body),
+    to: Mangoex.API.Kyc,
+    as: :submit
 end
