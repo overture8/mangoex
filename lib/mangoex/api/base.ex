@@ -47,8 +47,11 @@ defmodule Mangoex.API.Base do
   end
 
   def decode_json(resp_map) do
-    body = resp_map.body
-    |> Poison.decode!
+    body = case resp_map.body do
+      "" -> "No Body"
+      body -> Poison.decode!(body)
+    end
+
 
     case resp_map.status_code do
       200 -> {:ok, body}
