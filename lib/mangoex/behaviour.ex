@@ -7,4 +7,6 @@ defmodule Mangoex.Behaviour do
   @callback create_card(map()) :: tuple()
   @callback create_wallet(map()) :: tuple()
   @callback create_bank_account(:gb, String.t, map()) :: tuple()
+  @callback create_kyc_document(String.t, map()) :: tuple()
+  @callback create_kyc_page(String.t, String.t, map()) :: tuple()
 end
