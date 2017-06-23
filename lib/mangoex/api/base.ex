@@ -46,9 +46,29 @@ defmodule Mangoex.API.Base do
       ]
   end
 
+  @doc """
+  Decodes JSON returned when a file upload has taken place.
+
+  This mimics behaviour in the Ruby implementation which points out that file
+  uploads return a 204 rather than a 200.
+  """
+  def decode_json(:upload, resp_map) do
+    body = case resp_map.body do
+      "" -> "No Body"
+      body -> Poison.decode!(body)
+    end
+
+    case resp_map.status_code do
+      204 -> {:ok, "Document Uploaded Successfully"}
+      x when x > 204 -> {:error, body}
+    end
+  end
+
   def decode_json(resp_map) do
-    body = resp_map.body
-    |> Poison.decode!
+    body = case resp_map.body do
+      "" -> "No Body"
+      body -> Poison.decode!(body)
+    end
 
     case resp_map.status_code do
       200 -> {:ok, body}

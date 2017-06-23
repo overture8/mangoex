@@ -47,7 +47,7 @@ defmodule Mangoex.Api do
   defdelegate create_wallet(client_id, token, body),
     to: Mangoex.API.Wallet,
     as: :create
-    
+
   @spec create_gb_bank_account(
     String.t,
     String.t,
@@ -57,4 +57,35 @@ defmodule Mangoex.Api do
   defdelegate create_gb_bank_account(client_id, user_id, token, body),
     to: Mangoex.API.BankAccount,
     as: :create
+
+  @spec create_kyc_document(String.t,
+    String.t,
+    String.t,
+    map()
+  ) :: tuple()
+  defdelegate create_kyc_document(client_id, user_id, token, body),
+    to: Mangoex.API.Kyc,
+    as: :create
+
+  @spec create_kyc_page(
+    String.t,
+    String.t,
+    String.t,
+    String.t,
+    map()
+  ) :: tuple()
+  defdelegate create_kyc_page(client_id, user_id, kyc_document_id, token, body),
+    to: Mangoex.API.Kyc,
+    as: :create_page
+
+  @spec submit_kyc_document(
+    String.t,
+    String.t,
+    String.t,
+    String.t,
+    map()
+  ) :: tuple()
+  defdelegate submit_kyc_document(client_id, user_id, kyc_document_id, token, body),
+    to: Mangoex.API.Kyc,
+    as: :submit
 end

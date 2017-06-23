@@ -42,6 +42,18 @@ defmodule Mangoex.Client do
     GenServer.call(@client_name, {:create_bank_account, type, user_id, body})
   end
 
+  def create_kyc_document(user_id, body) do
+    GenServer.call(@client_name, {:create_kyc_document, user_id, body})
+  end
+
+  def create_kyc_page(user_id, kyc_document_id, body) do
+    GenServer.call(@client_name, {:create_kyc_page, user_id, kyc_document_id, body})
+  end
+
+  def submit_kyc_document(user_id, kyc_document_id, body) do
+    GenServer.call(@client_name, {:submit_kyc_document, user_id, kyc_document_id, body})
+  end
+
   # GenServer callbacks
 
   def handle_call({:auth, client_id, client_pass}, _from, state) do
@@ -126,6 +138,38 @@ defmodule Mangoex.Client do
     resp = Mangoex.Api.create_gb_bank_account(
       state[:client_id],
       user_id,
+      state[:token],
+      body
+    )
+    {:reply, resp, state}
+  end
+
+  def handle_call({:create_kyc_document, user_id, body}, _from, state) do
+    resp = Mangoex.Api.create_kyc_document(
+      state[:client_id],
+      user_id,
+      state[:token],
+      body
+    )
+    {:reply, resp, state}
+  end
+
+  def handle_call({:create_kyc_page, user_id, kyc_document_id, body}, _from, state) do
+    resp = Mangoex.Api.create_kyc_page(
+      state[:client_id],
+      user_id,
+      kyc_document_id,
+      state[:token],
+      body
+    )
+    {:reply, resp, state}
+  end
+
+  def handle_call({:submit_kyc_document, user_id, kyc_document_id, body}, _from, state) do
+    resp = Mangoex.Api.submit_kyc_document(
+      state[:client_id],
+      user_id,
+      kyc_document_id,
       state[:token],
       body
     )
