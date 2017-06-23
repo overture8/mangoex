@@ -76,8 +76,8 @@ These are the priorities for me right now. If you want anything else feel free t
  	- [ ] View PayOut
 - [ ] KYC
  	- [x] Create document
-    [x] Create a KYC page
-    [ ] Submit a KYC document
+  - [x] Create a KYC page
+  - [ ] Submit a KYC document
  	- [ ] View document   
 - [ ] Transfers
  	- [ ] Create Transfer

@@ -8,6 +8,6 @@ defmodule Mangoex.API.Kyc do
 
   def create_page(client_id, user_id, kyc_document_id, token, body) do
     resp = request(:post, "/#{client_id}/users/#{user_id}/kyc/documents/#{kyc_document_id}/pages", body, token)
-    decode_json(resp)
+    decode_json(:upload, resp)
   end
 end
