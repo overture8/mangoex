@@ -20,6 +20,18 @@ defmodule Mangoex.Behaviour do
   @callback create_wallet(map()) :: tuple()
   @callback create_bank_account(:gb, String.t, map()) :: tuple()
   @callback create_kyc_document(String.t, map()) :: tuple()
+
+  @doc """
+  Checks a User's emoney status.
+
+  ## Examples
+      iex> Mangoex.Client.auth("CLIENT_ID", "PASSPHRASE")
+      iex> Mangoex.Client.check_users_emoney("99999999", %{})
+      {:ok,
+       %{"CreditedEMoney" => %{"Amount" => 0, "Currency" => "EUR"},
+         "DebitedEMoney" => %{"Amount" => 0, "Currency" => "EUR"},
+         "UserId" => "25498808"}}
+  """
   @callback check_users_emoney(String.t, String.t, String.t, map()) :: tuple()
 
   @doc """
