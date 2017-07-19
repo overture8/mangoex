@@ -88,4 +88,14 @@ defmodule Mangoex.Api do
   defdelegate submit_kyc_document(client_id, user_id, kyc_document_id, token, body),
     to: Mangoex.API.Kyc,
     as: :submit
+
+  @spec check_users_emoney(
+    String.t,
+    String.t,
+    String.t,
+    map()
+  ) :: tuple()
+  defdelegate check_users_emoney(client_id, user_id, token, body),
+    to: Mangoex.API.User,
+    as: :emoney
 end

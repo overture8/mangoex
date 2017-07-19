@@ -20,6 +20,7 @@ defmodule Mangoex.Behaviour do
   @callback create_wallet(map()) :: tuple()
   @callback create_bank_account(:gb, String.t, map()) :: tuple()
   @callback create_kyc_document(String.t, map()) :: tuple()
+  @callback check_users_emoney(String.t, String.t, String.t, map()) :: tuple()
 
   @doc """
   Submits a KYC document for validation by MangoPay
