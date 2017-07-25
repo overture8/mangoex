@@ -22,6 +22,20 @@ defmodule Mangoex.Behaviour do
   @callback create_kyc_document(String.t, map()) :: tuple()
 
   @doc """
+  Checks a User's KYC document status.
+
+  ## Examples
+      iex> Mangoex.Client.auth("CLIENT_ID", "PASSPHRASE")
+      iex> Mangoex.Client.check_kyc_document("99999999")
+      {:ok,
+       %{"CreationDate" => 1498207261, "Id" => "99999999",
+         "RefusedReasonMessage" => nil, "RefusedReasonType" => nil,
+         "Status" => "VALIDATION_ASKED", "Tag" => nil, "Type" => "ADDRESS_PROOF",
+         "UserId" => "25015768"}}
+  """
+  @callback check_kyc_document(String.t) :: tuple()
+
+  @doc """
   Checks a User's emoney status.
 
   ## Examples
@@ -38,7 +52,7 @@ defmodule Mangoex.Behaviour do
          "DebitedEMoney" => %{"Amount" => 0, "Currency" => "GBP"},
          "UserId" => "99999999"}}
   """
-  @callback check_users_emoney(String.t, String.t, String.t, map()) :: tuple()
+  @callback check_users_emoney(String.t, map()) :: tuple()
 
   @doc """
   Submits a KYC document for validation by MangoPay

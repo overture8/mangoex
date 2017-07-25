@@ -54,6 +54,10 @@ defmodule Mangoex.Client do
     GenServer.call(@client_name, {:submit_kyc_document, user_id, kyc_document_id, body})
   end
 
+  def check_kyc_document(kyc_document_id) do
+    GenServer.call(@client_name, {:check_kyc_document, kyc_document_id})
+  end
+
   def check_users_emoney(user_id, body) do
     GenServer.call(@client_name, {:check_users_emoney, user_id, body})
   end
@@ -178,6 +182,10 @@ defmodule Mangoex.Client do
       body
     )
     {:reply, resp, state}
+  end
+
+  def handle_call({:check_kyc_document, kyc_document_id}, _from, state) do
+    {:reply, Mangoex.Api.check_kyc_document(state[:client_id], kyc_document_id, state[:token]), state}
   end
 
   def handle_call({:check_users_emoney, user_id, body}, _from, state) do
