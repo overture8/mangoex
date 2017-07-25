@@ -3,7 +3,7 @@ defmodule Mangoex.Mixfile do
 
   def project do
     [app: :mangoex,
-     version: "0.1.5",
+     version: "0.1.6",
      description: "Elixir wrapper for the MangoPay API",
      package: package(),
      elixir: "~> 1.4",
@@ -42,7 +42,7 @@ defmodule Mangoex.Mixfile do
 
   defp package do
     [
-      maintainers: ["overture8"],
+      maintainers: ["overture8", "tosbourn"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/overture8/mangoex"}
     ]
