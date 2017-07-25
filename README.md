@@ -62,7 +62,7 @@ These are the priorities for me right now. If you want anything else feel free t
   - [ ] Create natural user
   - [ ] Update natural user
   - [x] List users
-  - [ ] Get eMoney values
+  - [x] Get eMoney values
 - [ ] Wallets
   - [x] Create wallet
   - [ ] Update wallet
