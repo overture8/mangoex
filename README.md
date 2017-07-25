@@ -74,11 +74,11 @@ These are the priorities for me right now. If you want anything else feel free t
 - [ ] PayOuts
  	- [ ] Create PayOut
  	- [ ] View PayOut
-- [ ] KYC
+- [x] KYC
  	- [x] Create document
   - [x] Create a KYC page
   - [x] Submit a KYC document
- 	- [ ] View document   
+ 	- [x] View document   
 - [ ] Transfers
  	- [ ] Create Transfer
 - [x] BankAccounts

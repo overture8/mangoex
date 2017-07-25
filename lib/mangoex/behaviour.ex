@@ -22,6 +22,24 @@ defmodule Mangoex.Behaviour do
   @callback create_kyc_document(String.t, map()) :: tuple()
 
   @doc """
+  Checks a User's KYC document status.
+
+  ## Examples
+      iex> Mangoex.Client.auth("CLIENT_ID", "PASSPHRASE")
+      iex> Mangoex.Client.check_kyc_document("99999999")
+      {:ok,
+       %{"Type": "IDENTITY_PROOF",
+         "UserId": "8494514",
+         "Id": "99999999",
+         "Tag": "My CNI",
+         "CreationDate": "1463495137",
+         "Status": "VALIDATION_ASKED",
+         "RefusedReasonType": "",
+         "RefusedReasonMessage": ""}
+  """
+  @callback check_kyc_document(String.t) :: tuple()
+
+  @doc """
   Checks a User's emoney status.
 
   ## Examples

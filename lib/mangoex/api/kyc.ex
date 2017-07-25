@@ -15,4 +15,9 @@ defmodule Mangoex.API.Kyc do
     resp = request(:put, "/#{client_id}/users/#{user_id}/kyc/documents/#{kyc_document_id}", body, token)
     decode_json(resp)
   end
+
+  def check(client_id, kyc_document_id, token) do
+    resp = request(:get, "/#{client_id}/kyc/documents/#{kyc_document_id}", token)
+    decode_json(resp)
+  end
 end
