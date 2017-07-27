@@ -58,9 +58,9 @@ end
 
 These are the priorities for me right now. If you want anything else feel free to add a pull request.
 
-- [ ] Users
-  - [ ] Create natural user
-  - [ ] Update natural user
+- [x] Users
+  - [x] Create natural user
+  - [x] Update natural user
   - [x] List users
   - [x] Get eMoney values
 - [ ] Wallets

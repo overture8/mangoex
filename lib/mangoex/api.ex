@@ -3,6 +3,25 @@ defmodule Mangoex.Api do
   defdelegate authenticate(client_id, client_pass),
     to: Mangoex.API.Authenticate
 
+  @spec create_user(
+    String.t,
+    String.t,
+    map()
+  ) :: tuple()
+  defdelegate create_user(client_id, token, body),
+    to: Mangoex.API.User,
+    as: :create
+
+  @spec update_user(
+    String.t,
+    String.t,
+    String.t,
+    map()
+  ) :: tuple()
+  defdelegate update_user(client_id, user_id, token, body),
+    to: Mangoex.API.User,
+    as: :update
+
   @spec list_users(String.t, String.t) :: tuple()
   defdelegate list_users(client_id, token),
     to: Mangoex.API.User,
