@@ -31,35 +31,20 @@ defmodule Mangoex.Behaviour do
         },
         Birthday: 1463496101,
         Nationality: "GB",
-        CountryOfResidence: "EN",
+        CountryOfResidence: "FR",
         Email: "test@mangopay.com"
       }
       iex> Mangoex.Client.create_user(params)
-      {:ok, %{
-        Address: %{
-        AddressLine1: "1 Mangopay Street",
-        AddressLine2: "The Loop",
-        City: "Paris",
-        Region: "Ile de France",
-        PostalCode: "75001",
-        Country: "FR"
-        },
-      FirstName: "Joe",
-      LastName: "Blogs",
-      Birthday: "1463496101",
-      Nationality: "GB",
-      CountryOfResidence: "EN",
-      Occupation: "Carpenter",
-      IncomeRange: "2",
-      ProofOfIdentity: "",
-      ProofOfAddress: "",
-      Capacity: "NORMAL",
-      PersonType: "NATURAL",
-      Email: "test@mangopay.com",
-      KYCLevel: "LIGHT",
-      Id: "30089864",
-      CreationDate: "1501164569"}
-    }
+      {:ok,
+       %{"Address" => %{"AddressLine1" => "1 Mangopay Street",
+           "AddressLine2" => "The Loop", "City" => "Paris", "Country" => "FR",
+           "PostalCode" => "75001", "Region" => "Ile de France"},
+         "Birthday" => 1463496101, "Capacity" => "NORMAL",
+         "CountryOfResidence" => "FR", "CreationDate" => 1501165918,
+         "Email" => "test@mangopay.com", "FirstName" => "Joe", "Id" => "30091968",
+         "IncomeRange" => nil, "KYCLevel" => "LIGHT", "LastName" => "Blogs",
+         "Nationality" => "GB", "Occupation" => nil, "PersonType" => "NATURAL",
+         "ProofOfAddress" => nil, "ProofOfIdentity" => nil, "Tag" => nil}}
   """
   @callback create_user(map()) :: tuple()
 
@@ -70,31 +55,16 @@ defmodule Mangoex.Behaviour do
       iex> Mangoex.Client.auth("CLIENT_ID", "PASSPHRASE")
       iex> params = %{FirstName: "Updated"}
       iex> Mangoex.Client.update_user("00000001", params)
-      {:ok, %{
-        Address: %{
-        AddressLine1: "1 Mangopay Street",
-        AddressLine2: "The Loop",
-        City: "Paris",
-        Region: "Ile de France",
-        PostalCode: "75001",
-        Country: "FR"
-        },
-      FirstName: "Updated",
-      LastName: "Blogs",
-      Birthday: "1463496101",
-      Nationality: "GB",
-      CountryOfResidence: "EN",
-      Occupation: "Carpenter",
-      IncomeRange: "2",
-      ProofOfIdentity: "",
-      ProofOfAddress: "",
-      Capacity: "NORMAL",
-      PersonType: "NATURAL",
-      Email: "test@mangopay.com",
-      KYCLevel: "LIGHT",
-      Id: "00000001",
-      CreationDate: "1501164569"}
-      }
+      {:ok,
+       %{"Address" => %{"AddressLine1" => "1 Mangopay Street",
+           "AddressLine2" => "The Loop", "City" => "Paris", "Country" => "FR",
+           "PostalCode" => "75001", "Region" => "Ile de France"},
+         "Birthday" => 1463496101, "Capacity" => "NORMAL",
+         "CountryOfResidence" => "FR", "CreationDate" => 1501165918,
+         "Email" => "test@mangopay.com", "FirstName" => "Updated", "Id" => "00000001",
+         "IncomeRange" => nil, "KYCLevel" => "LIGHT", "LastName" => "Blogs",
+         "Nationality" => "GB", "Occupation" => nil, "PersonType" => "NATURAL",
+         "ProofOfAddress" => nil, "ProofOfIdentity" => nil, "Tag" => nil}}
   """
   @callback update_user(String.t, map()) :: tuple()
 

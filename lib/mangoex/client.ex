@@ -15,11 +15,11 @@ defmodule Mangoex.Client do
   end
 
   def create_user(body) do
-    GenSever.call(@client_name, {:create_user, body})
+    GenServer.call(@client_name, {:create_user, body})
   end
 
   def update_user(user_id, body) do
-    GenSever.call(@client_name, {:update_user, user_id, body})
+    GenServer.call(@client_name, {:update_user, user_id, body})
   end
 
   def list_users do

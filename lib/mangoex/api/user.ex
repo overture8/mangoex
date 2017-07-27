@@ -7,7 +7,7 @@ defmodule Mangoex.API.User do
   end
 
   def update(client_id, user_id, token, body) do
-    resp = request(:post, "/#{client_id}/users/natural/#{user_id}/", body, token)
+    resp = request(:put, "/#{client_id}/users/natural/#{user_id}/", body, token)
     decode_json(resp)
   end
 
