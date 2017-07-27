@@ -12,6 +12,92 @@ defmodule Mangoex.Behaviour do
       %{"access_token" => "99999999999999999999", "expires_in" => 1199, "token_type" => "bearer"}
   """
   @callback auth(String.t, String.t) :: tuple()
+
+  @doc """
+  Creates a Natural User on MangoPay
+
+  ## Examples
+      iex> Mangoex.Client.auth("CLIENT_ID", "PASSPHRASE")
+      iex> params = %{
+        FirstName: "Joe",
+        LastName: "Blogs",
+        Address: %{
+          AddressLine1: "1 Mangopay Street",
+          AddressLine2: "The Loop",
+          City: "Paris",
+          Region: "Ile de France",
+          PostalCode: "75001",
+          Country: "FR"
+        },
+        Birthday: 1463496101,
+        Nationality: "GB",
+        CountryOfResidence: "EN",
+        Email: "test@mangopay.com"
+      }
+      iex> Mangoex.Client.create_user(params)
+      {:ok, %{
+        Address: %{
+        AddressLine1: "1 Mangopay Street",
+        AddressLine2: "The Loop",
+        City: "Paris",
+        Region: "Ile de France",
+        PostalCode: "75001",
+        Country: "FR"
+        },
+      FirstName: "Joe",
+      LastName: "Blogs",
+      Birthday: "1463496101",
+      Nationality: "GB",
+      CountryOfResidence: "EN",
+      Occupation: "Carpenter",
+      IncomeRange: "2",
+      ProofOfIdentity: "",
+      ProofOfAddress: "",
+      Capacity: "NORMAL",
+      PersonType: "NATURAL",
+      Email: "test@mangopay.com",
+      KYCLevel: "LIGHT",
+      Id: "30089864",
+      CreationDate: "1501164569"}
+    }
+  """
+  @callback create_user(map()) :: tuple()
+
+  @doc """
+  Updates a Natural User on the system
+
+  ## Examples
+      iex> Mangoex.Client.auth("CLIENT_ID", "PASSPHRASE")
+      iex> params = %{FirstName: "Updated"}
+      iex> Mangoex.Client.update_user("00000001", params)
+      {:ok, %{
+        Address: %{
+        AddressLine1: "1 Mangopay Street",
+        AddressLine2: "The Loop",
+        City: "Paris",
+        Region: "Ile de France",
+        PostalCode: "75001",
+        Country: "FR"
+        },
+      FirstName: "Updated",
+      LastName: "Blogs",
+      Birthday: "1463496101",
+      Nationality: "GB",
+      CountryOfResidence: "EN",
+      Occupation: "Carpenter",
+      IncomeRange: "2",
+      ProofOfIdentity: "",
+      ProofOfAddress: "",
+      Capacity: "NORMAL",
+      PersonType: "NATURAL",
+      Email: "test@mangopay.com",
+      KYCLevel: "LIGHT",
+      Id: "00000001",
+      CreationDate: "1501164569"}
+      }
+  """
+  @callback update_user(String.t, map()) :: tuple()
+
   @callback list_users() :: tuple()
   @callback create_payin(:bankwire_direct | :card_direct, map()) :: tuple()
   @callback get_payin(String.t) :: tuple()
