@@ -67,6 +67,11 @@ defmodule Mangoex.Api do
     to: Mangoex.API.Wallet,
     as: :create
 
+  @spec get_wallet(String.t, String.t, String.t) :: tuple()
+  defdelegate get_wallet(client_id, wallet_id, token),
+    to: Mangoex.API.Wallet,
+    as: :get
+
   @spec create_gb_bank_account(
     String.t,
     String.t,

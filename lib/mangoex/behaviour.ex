@@ -74,6 +74,16 @@ defmodule Mangoex.Behaviour do
   @callback create_refund(:payin | :transfer, String.t, map()) :: tuple()
   @callback create_card(map()) :: tuple()
   @callback create_wallet(map()) :: tuple()
+
+  @doc """
+  Returns a Wallet
+
+  ## Examples
+      iex> Mangoex.Client.auth("CLIENT_ID", "PASSPHRASE")
+      iex> Mangoex.Client.get_wallet("99999999")
+
+  """
+  @callback get_wallet(String.t) :: tuple()
   @callback create_bank_account(:gb, String.t, map()) :: tuple()
   @callback create_kyc_document(String.t, map()) :: tuple()
 

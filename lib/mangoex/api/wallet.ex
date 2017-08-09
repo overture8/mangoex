@@ -5,4 +5,9 @@ defmodule Mangoex.API.Wallet do
     resp = request(:post, "/#{client_id}/wallets", body, token)
     decode_json(resp)
   end
+
+  def get(client_id, wallet_id, token) do
+    resp = request(:get, "/#{client_id}/wallets/#{wallet_id}", token)
+    decode_json(resp)
+  end
 end
