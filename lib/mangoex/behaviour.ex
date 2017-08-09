@@ -81,6 +81,14 @@ defmodule Mangoex.Behaviour do
   ## Examples
       iex> Mangoex.Client.auth("CLIENT_ID", "PASSPHRASE")
       iex> Mangoex.Client.get_wallet("99999999")
+      {:ok,
+       %{"Balance" => %{"Amount" => 2716,
+           "Currency" => "GBP"},
+         "CreationDate" => 1493386336,
+         "Currency" => "GBP",
+         "Description" => "test",
+         "FundsType" => "DEFAULT", "Id" => "99999999",
+         "Owners" => ["99999999"]}
 
   """
   @callback get_wallet(String.t) :: tuple()
