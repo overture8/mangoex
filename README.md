@@ -10,7 +10,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
 ```elixir
 def deps do
-  [{:mangoex, "~> 0.1.5"}]
+  [{:mangoex, "~> 0.1.9"}]
 end
 ```
 
@@ -66,6 +66,7 @@ These are the priorities for me right now. If you want anything else feel free t
 - [ ] Wallets
   - [x] Create wallet
   - [ ] Update wallet
+  - [x] Get wallet
 - [x] PayIns
   - [x] Create bankwire direct PayIn
   - [x] Create card direct PayIn
