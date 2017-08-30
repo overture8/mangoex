@@ -14,7 +14,8 @@ defmodule Mangoex.Behaviour do
   @callback auth(String.t, String.t) :: tuple()
 
   @doc """
-  Creates a Natural User on MangoPay
+  Creates a User on MangoPay
+  pattern match LegalPersonType to create a legal user
 
   ## Examples
       iex> Mangoex.Client.auth("CLIENT_ID", "PASSPHRASE")
@@ -49,7 +50,9 @@ defmodule Mangoex.Behaviour do
   @callback create_user(map()) :: tuple()
 
   @doc """
-  Updates a Natural User on the system
+  Updates a User on the system
+  pattern match LegalPersonType to update a legal user
+
 
   ## Examples
       iex> Mangoex.Client.auth("CLIENT_ID", "PASSPHRASE")
