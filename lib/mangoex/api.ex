@@ -4,21 +4,23 @@ defmodule Mangoex.Api do
     to: Mangoex.API.Authenticate
 
   @spec create_user(
+    :legal | :natural,
     String.t,
     String.t,
     map()
   ) :: tuple()
-  defdelegate create_user(client_id, token, body),
+  defdelegate create_user(type, client_id, token, body),
     to: Mangoex.API.User,
     as: :create
 
   @spec update_user(
+    :legal | :natural,
     String.t,
     String.t,
     String.t,
     map()
   ) :: tuple()
-  defdelegate update_user(client_id, user_id, token, body),
+  defdelegate update_user(type, client_id, user_id, token, body),
     to: Mangoex.API.User,
     as: :update
 

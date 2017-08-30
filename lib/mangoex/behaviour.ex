@@ -14,7 +14,7 @@ defmodule Mangoex.Behaviour do
   @callback auth(String.t, String.t) :: tuple()
 
   @doc """
-  Creates a Natural User on MangoPay
+  Creates a User on MangoPay
 
   ## Examples
       iex> Mangoex.Client.auth("CLIENT_ID", "PASSPHRASE")
@@ -34,7 +34,7 @@ defmodule Mangoex.Behaviour do
         CountryOfResidence: "FR",
         Email: "test@mangopay.com"
       }
-      iex> Mangoex.Client.create_user(params)
+      iex> Mangoex.Client.create_user(:natural, params)
       {:ok,
        %{"Address" => %{"AddressLine1" => "1 Mangopay Street",
            "AddressLine2" => "The Loop", "City" => "Paris", "Country" => "FR",
@@ -46,10 +46,12 @@ defmodule Mangoex.Behaviour do
          "Nationality" => "GB", "Occupation" => nil, "PersonType" => "NATURAL",
          "ProofOfAddress" => nil, "ProofOfIdentity" => nil, "Tag" => nil}}
   """
-  @callback create_user(map()) :: tuple()
+  @callback create_user(:legal |:natural, map()) :: tuple()
 
   @doc """
-  Updates a Natural User on the system
+  Updates a User on the system
+  pattern match LegalPersonType to update a legal user
+
 
   ## Examples
       iex> Mangoex.Client.auth("CLIENT_ID", "PASSPHRASE")
@@ -66,7 +68,7 @@ defmodule Mangoex.Behaviour do
          "Nationality" => "GB", "Occupation" => nil, "PersonType" => "NATURAL",
          "ProofOfAddress" => nil, "ProofOfIdentity" => nil, "Tag" => nil}}
   """
-  @callback update_user(String.t, map()) :: tuple()
+  @callback update_user(:legal |:natural, String.t, map()) :: tuple()
 
   @callback list_users() :: tuple()
   @callback create_payin(:bankwire_direct | :card_direct, map()) :: tuple()
