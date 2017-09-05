@@ -127,4 +127,13 @@ defmodule Mangoex.Api do
   defdelegate check_users_emoney(client_id, user_id, token, body),
     to: Mangoex.API.User,
     as: :emoney
+
+  @spec create_transfer(
+          String.t,
+          String.t,
+          map()
+        ) :: tuple()
+  defdelegate create_transfer(client_id, token, body),
+              to: Mangoex.API.Transfer,
+              as: :create
 end

@@ -80,8 +80,8 @@ These are the priorities for me right now. If you want anything else feel free t
   - [x] Create a KYC page
   - [x] Submit a KYC document
  	- [x] View document   
-- [ ] Transfers
- 	- [ ] Create Transfer
+- [x] Transfers
+ 	- [x] Create Transfer
 - [x] BankAccounts
  	- [x] Create GB bank account
 - [x] Cards
