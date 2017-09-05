@@ -146,4 +146,7 @@ defmodule Mangoex.Behaviour do
   @callback submit_kyc_document(String.t, String.t, map()) :: tuple()
 
   @callback create_kyc_page(String.t, String.t, map()) :: tuple()
+
+  @callback create_transfer(map()) :: tuple()
+
 end
