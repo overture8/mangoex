@@ -72,8 +72,8 @@ These are the priorities for me right now. If you want anything else feel free t
   - [x] Create card direct PayIn
   - [x] Get PayIn
   - [x] PayIn Refund
-- [ ] PayOuts
- 	- [ ] Create PayOut
+- [x] PayOuts
+ 	- [x] Create PayOut
  	- [ ] View PayOut
 - [x] KYC
  	- [x] Create document
