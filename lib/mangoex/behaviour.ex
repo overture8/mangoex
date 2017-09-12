@@ -14,7 +14,8 @@ defmodule Mangoex.Behaviour do
   @callback auth(String.t, String.t) :: tuple()
 
   @doc """
-  Creates a Natural User on MangoPay
+  Creates a User on MangoPay
+  pattern match LegalPersonType to create a legal user
 
   ## Examples
       iex> Mangoex.Client.auth("CLIENT_ID", "PASSPHRASE")
@@ -49,7 +50,9 @@ defmodule Mangoex.Behaviour do
   @callback create_user(map()) :: tuple()
 
   @doc """
-  Updates a Natural User on the system
+  Updates a User on the system
+  pattern match LegalPersonType to update a legal user
+
 
   ## Examples
       iex> Mangoex.Client.auth("CLIENT_ID", "PASSPHRASE")
@@ -70,6 +73,7 @@ defmodule Mangoex.Behaviour do
 
   @callback list_users() :: tuple()
   @callback create_payin(:bankwire_direct | :card_direct, map()) :: tuple()
+  @callback create_payout(map()) :: tuple()
   @callback get_payin(String.t) :: tuple()
   @callback create_refund(:payin | :transfer, String.t, map()) :: tuple()
   @callback create_card(map()) :: tuple()
@@ -93,6 +97,7 @@ defmodule Mangoex.Behaviour do
   """
   @callback get_wallet(String.t) :: tuple()
   @callback create_bank_account(:gb, String.t, map()) :: tuple()
+  @callback create_bank_account(:iban, String.t, map()) :: tuple()
   @callback create_kyc_document(String.t, map()) :: tuple()
 
   @doc """
@@ -143,4 +148,7 @@ defmodule Mangoex.Behaviour do
   @callback submit_kyc_document(String.t, String.t, map()) :: tuple()
 
   @callback create_kyc_page(String.t, String.t, map()) :: tuple()
+
+  @callback create_transfer(map()) :: tuple()
+
 end

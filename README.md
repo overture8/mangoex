@@ -61,6 +61,8 @@ These are the priorities for me right now. If you want anything else feel free t
 - [x] Users
   - [x] Create natural user
   - [x] Update natural user
+  - [x] Create legal user
+  - [x] Update legal user
   - [x] List users
   - [x] Get eMoney values
 - [ ] Wallets
@@ -72,8 +74,8 @@ These are the priorities for me right now. If you want anything else feel free t
   - [x] Create card direct PayIn
   - [x] Get PayIn
   - [x] PayIn Refund
-- [ ] PayOuts
- 	- [ ] Create PayOut
+- [x] PayOuts
+ 	- [x] Create PayOut
  	- [ ] View PayOut
 - [x] KYC
  	- [x] Create document
@@ -84,6 +86,7 @@ These are the priorities for me right now. If you want anything else feel free t
  	- [ ] Create Transfer
 - [x] BankAccounts
  	- [x] Create GB bank account
+ 	- [x] Create IBAN bank account
 - [x] Cards
   - [x] Create card registration
   - [x] Update card registration

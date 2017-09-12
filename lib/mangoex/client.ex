@@ -26,6 +26,10 @@ defmodule Mangoex.Client do
     GenServer.call(@client_name, {:list_users})
   end
 
+  def create_payout(body) do
+    GenServer.call(@client_name, {:create_payout, body})
+  end
+
   def create_payin(type, body) do
     GenServer.call(@client_name, {:create_payin, type, body})
   end
@@ -74,6 +78,9 @@ defmodule Mangoex.Client do
     GenServer.call(@client_name, {:check_users_emoney, user_id, body})
   end
 
+  def create_transfer(body) do
+    GenServer.call(@client_name, {:create_transfer, body})
+  end
   # GenServer callbacks
 
   def handle_call({:auth, client_id, client_pass}, _from, state) do
@@ -117,6 +124,15 @@ defmodule Mangoex.Client do
 
   def handle_call({:get_wallet, wallet_id}, _from, state) do
     resp = Mangoex.Api.get_wallet(state[:client_id], wallet_id, state[:token])
+    {:reply, resp, state}
+  end
+
+  def handle_call({:create_payout, body}, _from, state) do
+    resp = Mangoex.Api.create_payout(
+      state[:client_id],
+      state[:token],
+      body
+    )
     {:reply, resp, state}
   end
 
@@ -179,6 +195,16 @@ defmodule Mangoex.Client do
     {:reply, resp, state}
   end
 
+  def handle_call({:create_bank_account, :iban, user_id, body}, _from, state) do
+    resp = Mangoex.Api.create_iban_bank_account(
+      state[:client_id],
+      user_id,
+      state[:token],
+      body
+    )
+    {:reply, resp, state}
+  end
+
   def handle_call({:create_kyc_document, user_id, body}, _from, state) do
     resp = Mangoex.Api.create_kyc_document(
       state[:client_id],
@@ -219,6 +245,15 @@ defmodule Mangoex.Client do
     resp = Mangoex.Api.check_users_emoney(
       state[:client_id],
       user_id,
+      state[:token],
+      body
+    )
+    {:reply, resp, state}
+  end
+
+  def handle_call({:create_transfer, body}, _from, state) do
+    resp = Mangoex.Api.create_transfer(
+      state[:client_id],
       state[:token],
       body
     )
