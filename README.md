@@ -84,6 +84,7 @@ These are the priorities for me right now. If you want anything else feel free t
  	- [ ] Create Transfer
 - [x] BankAccounts
  	- [x] Create GB bank account
+ 	- [x] Create IBAN bank account
 - [x] Cards
   - [x] Create card registration
   - [x] Update card registration

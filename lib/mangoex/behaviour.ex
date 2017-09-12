@@ -93,6 +93,7 @@ defmodule Mangoex.Behaviour do
   """
   @callback get_wallet(String.t) :: tuple()
   @callback create_bank_account(:gb, String.t, map()) :: tuple()
+  @callback create_bank_account(:iban, String.t, map()) :: tuple()
   @callback create_kyc_document(String.t, map()) :: tuple()
 
   @doc """
