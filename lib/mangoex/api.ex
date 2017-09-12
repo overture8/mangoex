@@ -27,6 +27,15 @@ defmodule Mangoex.Api do
     to: Mangoex.API.User,
     as: :list
 
+  @spec create_payout(
+    String.t,
+    String.t,
+    map()
+  ) :: tuple()
+  defdelegate create_payout(client_id, token, body),
+    to: Mangoex.API.Payout,
+    as: :create
+
   @spec create_payin(
     :bankwire_direct | :card_direct,
     String.t,

@@ -73,6 +73,7 @@ defmodule Mangoex.Behaviour do
 
   @callback list_users() :: tuple()
   @callback create_payin(:bankwire_direct | :card_direct, map()) :: tuple()
+  @callback create_payout(map()) :: tuple()
   @callback get_payin(String.t) :: tuple()
   @callback create_refund(:payin | :transfer, String.t, map()) :: tuple()
   @callback create_card(map()) :: tuple()

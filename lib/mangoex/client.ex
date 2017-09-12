@@ -26,6 +26,10 @@ defmodule Mangoex.Client do
     GenServer.call(@client_name, {:list_users})
   end
 
+  def create_payout(body) do
+    GenServer.call(@client_name, {:create_payout, body})
+  end
+
   def create_payin(type, body) do
     GenServer.call(@client_name, {:create_payin, type, body})
   end
@@ -120,6 +124,15 @@ defmodule Mangoex.Client do
 
   def handle_call({:get_wallet, wallet_id}, _from, state) do
     resp = Mangoex.Api.get_wallet(state[:client_id], wallet_id, state[:token])
+    {:reply, resp, state}
+  end
+
+  def handle_call({:create_payout, body}, _from, state) do
+    resp = Mangoex.Api.create_payout(
+      state[:client_id],
+      state[:token],
+      body
+    )
     {:reply, resp, state}
   end
 
