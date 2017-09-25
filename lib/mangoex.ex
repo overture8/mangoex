@@ -3,6 +3,10 @@ defmodule Mangoex do
   use Application
 
   def start(_type, _args) do
-    Mangoex.Client.start_link
+    import Supervisor.Spec, warn: false
+
+    Supervisor.start_link([worker(Mangoex.Client, [])],
+      strategy: :one_for_one,
+      name: Mangoex.Supervisor)
   end
 end
