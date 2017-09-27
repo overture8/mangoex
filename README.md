@@ -10,7 +10,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
 ```elixir
 def deps do
-  [{:mangoex, "~> 0.1.10"}]
+  [{:mangoex, "~> 0.2.0"}]
 end
 ```
 
@@ -73,15 +73,15 @@ These are the priorities for me right now. If you want anything else feel free t
   - [x] Get PayIn
   - [x] PayIn Refund
 - [ ] PayOuts
- 	- [ ] Create PayOut
+ 	- [x] Create PayOut
  	- [ ] View PayOut
 - [x] KYC
  	- [x] Create document
   - [x] Create a KYC page
   - [x] Submit a KYC document
  	- [x] View document   
-- [ ] Transfers
- 	- [ ] Create Transfer
+- [x] Transfers
+ 	- [x] Create Transfer
 - [x] BankAccounts
  	- [x] Create GB bank account
 - [x] Cards
