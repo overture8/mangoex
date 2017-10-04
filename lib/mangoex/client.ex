@@ -82,6 +82,10 @@ defmodule Mangoex.Client do
     GenServer.call(@client_name, {:create_payout, body})
   end
 
+  def get_payout(payout_id) do
+    GenServer.call(@client_name, {:get_payout, payout_id})
+  end
+
   # GenServer callbacks
 
   def handle_call({:auth, client_id, client_pass}, _from, state) do
@@ -247,6 +251,15 @@ defmodule Mangoex.Client do
       state[:client_id],
       state[:token],
       body
+    )
+    {:reply, resp, state}
+  end
+
+  def handle_call({:get_payout, payout_id}, _from, state) do
+    resp = Mangoex.Api.get_payout(
+      state[:client_id],
+      state[:token],
+      payout_id
     )
     {:reply, resp, state}
   end

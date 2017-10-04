@@ -137,4 +137,13 @@ defmodule Mangoex.Api do
   defdelegate create_payout(client_id, token, body),
     to: Mangoex.API.Payout,
     as: :create
+
+  @spec get_payout(
+    String.t,
+    String.t,
+    String.t
+  ) :: tuple()
+  defdelegate get_payout(client_id, payout_id, token),
+    to: Mangoex.API.Payout,
+    as: :get
 end

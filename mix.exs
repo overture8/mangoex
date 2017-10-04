@@ -3,7 +3,7 @@ defmodule Mangoex.Mixfile do
 
   def project do
     [app: :mangoex,
-     version: "0.2.0",
+     version: "0.2.1",
      description: "Elixir wrapper for the MangoPay API",
      package: package(),
      elixir: "~> 1.4",

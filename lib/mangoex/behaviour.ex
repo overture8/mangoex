@@ -74,6 +74,7 @@ defmodule Mangoex.Behaviour do
   @callback create_refund(:payin | :transfer, String.t, map()) :: tuple()
   @callback create_transfer(map()) :: tuple()
   @callback create_payout(map()) :: tuple()
+  @callback get_payout(String.t) :: tuple()
   @callback create_card(map()) :: tuple()
   @callback create_wallet(map()) :: tuple()
 
