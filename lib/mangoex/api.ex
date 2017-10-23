@@ -82,6 +82,16 @@ defmodule Mangoex.Api do
     to: Mangoex.API.BankAccount,
     as: :create
 
+  @spec create_iban_bank_account(
+    String.t,
+    String.t,
+    String.t,
+    map()
+  ) :: tuple()
+  defdelegate create_iban_bank_account(client_id, user_id, token, body),
+    to: Mangoex.API.BankAccount,
+    as: :create_iban
+
   @spec create_kyc_document(String.t,
     String.t,
     String.t,

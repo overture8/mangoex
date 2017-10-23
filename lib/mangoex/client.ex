@@ -195,6 +195,16 @@ defmodule Mangoex.Client do
     {:reply, resp, state}
   end
 
+  def handle_call({:create_bank_account, :iban, user_id, body}, _from, state) do
+    resp = Mangoex.Api.create_iban_bank_account(
+      state[:client_id],
+      user_id,
+      state[:token],
+      body
+    )
+    {:reply, resp, state}
+  end
+
   def handle_call({:create_kyc_document, user_id, body}, _from, state) do
     resp = Mangoex.Api.create_kyc_document(
       state[:client_id],
