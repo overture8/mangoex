@@ -52,6 +52,9 @@ defmodule Mangoex.API.Base do
   This mimics behaviour in the Ruby implementation which points out that file
   uploads return a 204 rather than a 200.
   """
+  def decode_json(:upload, {:badkey, :body, %{message: "req_timedout"}}) do
+    {:error, "Request Timeout"}
+  end
   def decode_json(:upload, resp_map) do
     body = case resp_map.body do
       "" -> "No Body"
@@ -64,6 +67,9 @@ defmodule Mangoex.API.Base do
     end
   end
 
+  def decode_json({:badkey, :body, %{message: "req_timedout"}}) do
+    {:error, "Request Timeout"}
+  end
   def decode_json(resp_map) do
     body = case resp_map.body do
       "" -> "No Body"
