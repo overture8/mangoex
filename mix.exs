@@ -6,7 +6,7 @@ defmodule Mangoex.Mixfile do
      version: "0.2.2",
      description: "Elixir wrapper for the MangoPay API",
      package: package(),
-     elixir: "~> 1.4",
+     elixir: "~> 1.5",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps()]
