@@ -78,6 +78,10 @@ defmodule Mangoex.Client do
     GenServer.call(@client_name, {:create_transfer, body})
   end
 
+  def get_transfer(transfer_id) do
+    GenServer.call(@client_name, {:get_transfer, transfer_id})
+  end
+
   def create_payout(body) do
     GenServer.call(@client_name, {:create_payout, body})
   end
@@ -243,6 +247,11 @@ defmodule Mangoex.Client do
       state[:token],
       body
     )
+    {:reply, resp, state}
+  end
+
+  def handle_call({:get_transfer, transfer_id}, _from, state) do
+    resp = Mangoex.Api.get_transfer(state[:client_id], transfer_id, state[:token])
     {:reply, resp, state}
   end
 

@@ -133,6 +133,11 @@ defmodule Mangoex.Api do
     to: Mangoex.API.Transfer,
     as: :create
 
+  @spec get_transfer(String.t, String.t, String.t) :: tuple()
+  defdelegate get_transfer(client_id, transfer_id, token),
+    to: Mangoex.API.Transfer,
+    as: :get
+
   @spec create_payout(String.t, String.t, map()) :: tuple()
   defdelegate create_payout(client_id, token, body),
     to: Mangoex.API.Payout,
