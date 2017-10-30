@@ -19,7 +19,7 @@ defmodule Mangoex.Client do
   end
 
   def create_user(type, body) do
-    GenServer.call(@client_name, {:create_user, body, type})
+    GenServer.call(@client_name, {:create_user, type, body})
   end
 
   def update_user(user_id, body) do
@@ -27,7 +27,7 @@ defmodule Mangoex.Client do
   end
 
   def update_user(type, user_id, body) do
-    GenServer.call(@client_name, {:update_user, user_id, body, type})
+    GenServer.call(@client_name, {:update_user, type, user_id, body})
   end
 
   def list_users do
