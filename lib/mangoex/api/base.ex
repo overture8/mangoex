@@ -1,49 +1,43 @@
 defmodule Mangoex.API.Base do
-  @api_base Application.fetch_env!(:mangoex, :api_base)
-
   def request(:auth, client_id, client_pass) do
     token = encode_auth(client_id, client_pass)
 
-    HTTPotion.post api_url("/oauth/token"),
-      [
-        body: "grant_type=" <> URI.encode_www_form("client_credentials"),
-        headers: [
-          "Authorization": "Basic #{token}",
-          "Content-Type": "application/x-www-form-urlencoded"]
-      ]
+    HTTPoison.post api_url("/oauth/token"),
+                   Poison.encode!("grant_type=" <> URI.encode_www_form("client_credentials")),
+                   [
+                     {"Authorization", "Basic #{token}"},
+                     {"Content-Type", "application/x-www-form-urlencoded"}
+                   ]
+
   end
 
   def request(:get, path, token) do
-    HTTPotion.get api_url(path),
-      [
-        headers: ["Authorization": "Bearer #{token}"]
-      ]
+    HTTPoison.get api_url(path),
+                  [{"Authorization", "Bearer #{token}"}]
   end
 
   def request(:post, path, body, token) do
-    encoded_body = body |> Poison.encode!
+    encoded_body = body
+                   |> Poison.encode!
 
-    HTTPotion.post api_url(path),
-      [
-        body: encoded_body,
-        headers: [
-          "Authorization": "Bearer #{token}",
-          "Content-Type": "application/json"
-        ]
-      ]
+    HTTPoison.post api_url(path),
+                   encoded_body,
+                   [
+                     {"Authorization", "Bearer #{token}"},
+                     {"Content-Type", "application/json"}
+                   ]
   end
 
   def request(:put, path, body, token) do
-    encoded_body = body |> Poison.encode!
+    encoded_body = body
+                   |> Poison.encode!
 
-    HTTPotion.put api_url(path),
-      [
-        body: encoded_body,
-        headers: [
-          "Authorization": "Bearer #{token}",
-          "Content-Type": "application/json"
-        ]
-      ]
+    HTTPoison.put api_url(path),
+                  encoded_body,
+                  [
+                    {"Authorization", "Bearer #{token}"},
+                    {"Content-Type", "application/json"}
+                  ]
   end
 
   @doc """
@@ -83,7 +77,7 @@ defmodule Mangoex.API.Base do
   end
 
   defp api_url(url) do
-    @api_base <> url
+    Application.fetch_env!(:mangoex, :api_base) <> url
   end
 
   defp encode_auth(client_id, client_password) do
