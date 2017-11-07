@@ -10,7 +10,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
 ```elixir
 def deps do
-  [{:mangoex, "~> 0.2.3"}]
+  [{:mangoex, "~> 0.3.0"}]
 end
 ```
 
@@ -22,7 +22,7 @@ def application do
 end
 ```
 
- 3. Ensure you have SSL protocal version specified in your `confix.ex`:
+ 3. You may need to specify the SSL protocol version in your `confix.ex` for Erlang 19:
 
 ```elixir
 config :ssl, protocol_version: :"tlsv1.2"

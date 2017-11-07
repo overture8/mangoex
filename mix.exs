@@ -3,7 +3,7 @@ defmodule Mangoex.Mixfile do
 
   def project do
     [app: :mangoex,
-     version: "0.2.3",
+     version: "0.3.0",
      description: "Elixir wrapper for the MangoPay API",
      package: package(),
      elixir: "~> 1.5",
@@ -16,8 +16,7 @@ defmodule Mangoex.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger,
-                    :httpotion],
+    [applications: [:logger, :httpoison],
      mod: {Mangoex, []}]
   end
 
@@ -32,7 +31,7 @@ defmodule Mangoex.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:httpotion, "~> 3.0.2"},
+      {:httpoison, "~> 0.13"},
       {:poison, "~> 3.0"},
       {:exvcr, "~> 0.7", only: :test},
       {:dialyxir, "~> 0.4", only: [:dev]},
