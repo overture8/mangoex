@@ -1,6 +1,4 @@
 defmodule Mangoex.API.Base do
-  @api_base Application.fetch_env!(:mangoex, :api_base)
-
   def request(:auth, client_id, client_pass) do
     token = encode_auth(client_id, client_pass)
     data = %{grant_type: "client_credentials"} |> Poison.encode!()
@@ -73,7 +71,7 @@ defmodule Mangoex.API.Base do
   end
 
   defp api_url(url) do
-    @api_base <> url
+    Application.fetch_env!(:mangoex, :api_base) <> url
   end
 
   defp encode_auth(client_id, client_password) do
