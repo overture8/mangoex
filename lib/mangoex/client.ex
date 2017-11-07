@@ -18,8 +18,16 @@ defmodule Mangoex.Client do
     GenServer.call(@client_name, {:create_user, body})
   end
 
+  def create_user(type, body) do
+    GenServer.call(@client_name, {:create_user, type, body})
+  end
+
   def update_user(user_id, body) do
     GenServer.call(@client_name, {:update_user, user_id, body})
+  end
+
+  def update_user(type, user_id, body) do
+    GenServer.call(@client_name, {:update_user, type, user_id, body})
   end
 
   def list_users do
@@ -112,13 +120,66 @@ defmodule Mangoex.Client do
     {:reply, resp, state}
   end
 
-  def handle_call({:create_user, body}, _from, state) do
-    resp = Mangoex.Api.create_user(state[:client_id], state[:token], body)
+  def handle_call({:create_user, :legal, body}, _from, state) do
+    resp = Mangoex.Api.create_user(
+      :legal,
+      state[:client_id],
+      state[:token],
+      body
+    )
     {:reply, resp, state}
   end
 
+  def handle_call({:create_user, :natural, body}, _from, state) do
+    resp = Mangoex.Api.create_user(
+      :natural,
+      state[:client_id],
+      state[:token],
+      body
+    )
+    {:reply, resp, state}
+  end
+
+  #backward compatibility
+  def handle_call({:create_user, body}, _from, state) do
+    resp = Mangoex.Api.create_user(
+      :natural,
+      state[:client_id],
+      state[:token],
+      body
+    )
+    {:reply, resp, state}
+  end
+
+  def handle_call({:update_user, :legal, user_id, body}, _from, state) do
+    resp = Mangoex.Api.update_user(
+      :legal,
+      state[:client_id],
+      user_id,
+      state[:token],
+      body
+    )
+    {:reply, resp, state}
+  end
+
+  def handle_call({:update_user, :natural, user_id, body}, _from, state) do
+    resp = Mangoex.Api.update_user(
+      :natural,
+      state[:client_id],
+      user_id,
+      state[:token],
+      body)
+    {:reply, resp, state}
+  end
+
+  #backward compatibility
   def handle_call({:update_user, user_id, body}, _from, state) do
-    resp = Mangoex.Api.update_user(state[:client_id], user_id, state[:token], body)
+    resp = Mangoex.Api.update_user(
+      :natural,
+      state[:client_id],
+      user_id,
+      state[:token],
+      body)
     {:reply, resp, state}
   end
 
