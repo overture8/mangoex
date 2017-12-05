@@ -10,35 +10,34 @@ defmodule Mangoex.API.Base do
   end
 
   def request(:get, path, token) do
-    HTTPoison.get! api_url(path), [
-      {"Authorization", "Bearer #{token}"},
-      {"Content-Type", "application/json"}
-    ]
+    HTTPoison.get! api_url(path), build_headers(token)
   end
 
   def request(:post, path, body, token), do:
     request(:post, path, body, token, nil)
   def request(:post, path, body, token, idempotency) do
-    data = body |> Poison.encode!()
-    headers =
-      [
-        {"Authorization", "Bearer #{token}"},
-        {"Content-Type", "application/json"}
-      ]
-    unless idempotency == nil,
-         do: headers
-             |> Enum.concat([{"Idempotency-Key", "#{idempotency}"}])
+    data = body|> Poison.encode!()
 
-    HTTPoison.post! api_url(path), data, headers
+    HTTPoison.post! api_url(path), data, build_headers(token, idempotency)
   end
 
   def request(:put, path, body, token) do
     data = body |> Poison.encode!()
 
-    HTTPoison.put! api_url(path), data, [
+    HTTPoison.put! api_url(path), data, build_headers(token)
+  end
+
+  defp build_headers(token) do
+    [
       {"Authorization", "Bearer #{token}"},
       {"Content-Type", "application/json"}
     ]
+  end
+
+  defp build_headers(token, nil), do:
+    build_headers(token)
+  defp build_headers(token, idempotency) do
+    [{"Idempotency-Key", "#{idempotency}"} | build_headers(token)]
   end
 
   @doc """
