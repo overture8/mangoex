@@ -6,8 +6,8 @@ defmodule Mangoex.API.Payout do
     decode_json(resp)
   end
 
-  def create(client_id, token, body) do
-    resp = request(:post, "/#{client_id}/payouts/bankwire/", body, token)
+  def create(client_id, token, body, idempotency \\ nil) do
+    resp = request(:post, "/#{client_id}/payouts/bankwire/", body, token, idempotency)
     decode_json(resp)
   end
 end

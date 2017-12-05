@@ -16,13 +16,20 @@ defmodule Mangoex.API.Base do
     ]
   end
 
-  def request(:post, path, body, token) do
+  def request(:post, path, body, token), do:
+    request(:post, path, body, token, nil)
+  def request(:post, path, body, token, idempotency) do
     data = body |> Poison.encode!()
+    headers =
+      [
+        {"Authorization", "Bearer #{token}"},
+        {"Content-Type", "application/json"}
+      ]
+    unless idempotency == nil,
+         do: headers
+             |> Enum.concat([{"Idempotency-Key", "#{idempotency}"}])
 
-    HTTPoison.post! api_url(path), data, [
-      {"Authorization", "Bearer #{token}"},
-      {"Content-Type", "application/json"}
-    ]
+    HTTPoison.post! api_url(path), data, headers
   end
 
   def request(:put, path, body, token) do
@@ -58,7 +65,7 @@ defmodule Mangoex.API.Base do
   def decode_json({:badkey, :body, %{message: "req_timedout"}}) do
     {:error, "Request Timeout"}
   end
-  def decode_json(resp_map) do    
+  def decode_json(resp_map) do
     body = case resp_map.body do
       "" -> "No Body"
       body -> Poison.decode!(body)
