@@ -2,22 +2,23 @@ defmodule Mangoex.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :mangoex,
-     version: "0.3.0",
-     description: "Elixir wrapper for the MangoPay API",
-     package: package(),
-     elixir: "~> 1.5",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      app: :mangoex,
+      version: "0.4.0",
+      description: "Elixir wrapper for the MangoPay API",
+      package: package(),
+      elixir: "~> 1.5",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :httpoison],
-     mod: {Mangoex, []}]
+    [applications: [:logger, :httpoison], mod: {Mangoex, []}]
   end
 
   # Dependencies can be Hex packages:
