@@ -140,8 +140,8 @@ defmodule Mangoex.Api do
     to: Mangoex.API.User,
     as: :emoney
 
-  @spec create_transfer(String.t, String.t, map()) :: tuple()
-  defdelegate create_transfer(client_id, token, body),
+  @spec create_transfer(String.t, String.t, map(), String.t) :: tuple()
+  defdelegate create_transfer(client_id, token, body, idempotency \\ nil),
     to: Mangoex.API.Transfer,
     as: :create
 
@@ -150,8 +150,8 @@ defmodule Mangoex.Api do
     to: Mangoex.API.Transfer,
     as: :get
 
-  @spec create_payout(String.t, String.t, map()) :: tuple()
-  defdelegate create_payout(client_id, token, body),
+  @spec create_payout(String.t, String.t, map(), String.t) :: tuple()
+  defdelegate create_payout(client_id, token, body, idempotency \\ nil),
     to: Mangoex.API.Payout,
     as: :create
 

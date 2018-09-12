@@ -82,16 +82,16 @@ defmodule Mangoex.Client do
     GenServer.call(@client_name, {:check_users_emoney, user_id, body})
   end
 
-  def create_transfer(body) do
-    GenServer.call(@client_name, {:create_transfer, body})
+  def create_transfer(body, idempotency \\nil) do
+    GenServer.call(@client_name, {:create_transfer, body, idempotency})
   end
 
   def get_transfer(transfer_id) do
     GenServer.call(@client_name, {:get_transfer, transfer_id})
   end
 
-  def create_payout(body) do
-    GenServer.call(@client_name, {:create_payout, body})
+  def create_payout(body, idempotency \\nil) do
+    GenServer.call(@client_name, {:create_payout, body, idempotency})
   end
 
   def get_payout(payout_id) do
@@ -312,11 +312,12 @@ defmodule Mangoex.Client do
     {:reply, resp, state}
   end
 
-  def handle_call({:create_transfer, body}, _from, state) do
+  def handle_call({:create_transfer, body, idempotency}, _from, state) do
     resp = Mangoex.Api.create_transfer(
       state[:client_id],
       state[:token],
-      body
+      body,
+      idempotency
     )
     {:reply, resp, state}
   end
@@ -326,11 +327,12 @@ defmodule Mangoex.Client do
     {:reply, resp, state}
   end
 
-  def handle_call({:create_payout, body}, _from, state) do
+  def handle_call({:create_payout, body, idempotency}, _from, state) do
     resp = Mangoex.Api.create_payout(
       state[:client_id],
       state[:token],
-      body
+      body,
+      idempotency
     )
     {:reply, resp, state}
   end
